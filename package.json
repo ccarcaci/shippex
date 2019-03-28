@@ -1,0 +1,15 @@
+{
+  "name": "shippex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pactTest": "export NODE_ENV=pactTest && jest --testRegex \"/*(.test.pact.js)\" --runInBand --setupFiles ./pactSetup.js --setupTestFrameworkScriptFile ./pactTestWrapper.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@pact-foundation/pact": "^8.0.5"
+  }
+}
