@@ -21,7 +21,7 @@ const routing = (request, response) => {
     response.end()
 	} else if(action.pathname === "/superheroes") {
 		response.writeHead(200, { "Content-Type": "application/json" })
-    response.write(JSON.stringify(characters))
+    response.write(JSON.stringify(superheroes))
     response.end()
   }
 }
