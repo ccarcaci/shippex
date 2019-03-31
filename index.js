@@ -19,11 +19,14 @@ const routing = (request, response) => {
 		response.writeHead(200, { "Content-Type": "text/plain" })
     response.write("Try with /superheroes")
     response.end()
-	} else if(action.pathname === "/superheroes") {
+	} else if(action.pathname === "/superheroes" && request.method === "POST") {
 		response.writeHead(200, { "Content-Type": "application/json" })
     response.write(JSON.stringify(superheroes))
     response.end()
   }
+
+  response.writeHead(404)
+  response.end()
 }
 
 var httpServer = http.createServer((req, res) => routing(req, res))
