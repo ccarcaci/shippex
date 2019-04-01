@@ -4,7 +4,7 @@ const adapter = require("axios/lib/adapters/http")
 var baseUrl = "http://mock.hero.dev"
 var port = 80
 
-function createHero(name, superpower, universe) {
+const createHero = (name, superpower, universe) => {
   const data = {
     "superpower": superpower,
     "name": name,
@@ -23,4 +23,4 @@ function createHero(name, superpower, universe) {
   }, adapter)
 }
 
-export default { createHero, baseUrl, port };
+module.exports = { createHero, baseUrl, port }

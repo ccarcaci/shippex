@@ -1,5 +1,5 @@
 const { Pact } = require("@pact-foundation/pact")
-const { api } = require(/* wherever */)
+const { api } = (url) => { } // require(/* wherever */)
 
 describe("The API", () => {
   const url = "https://localhost"
@@ -9,7 +9,7 @@ describe("The API", () => {
       const interaction = {
         uponReceiving: "Request description",
         withRequest: {
-          method: GET,
+          method: "GET",
           path: "/foo/bar",
           query: "",
           headers: {

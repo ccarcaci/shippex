@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pactTest": "export NODE_ENV=pactTest && jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
+    "pact": "export NODE_ENV=pactTest && jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
     "start": "node index.js"
   },
   "author": "",
