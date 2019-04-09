@@ -2,9 +2,6 @@ const createHero = require("../hero.build.js")
 const Pact = require("@pact-foundation/pact")
 
 describe("HeroService API", () => {
-  createHero.port = 8080
-  createHero.baseUrl = "http://hero.mock.dev"
-
   const heroRequest = {
     "superpower": "flying",
     "name": "Superman",
@@ -30,7 +27,7 @@ describe("HeroService API", () => {
           method: "POST",
           path: "/heroes",
           headers: {
-            "Accept": "application/json",
+            "Accept": "application/json; charset=utf-8",
             "Content-Type": contentTypeJsonMatcher
           },
           body: heroRequest
@@ -40,7 +37,7 @@ describe("HeroService API", () => {
           headers: {
             "Content-Type": contentTypeJsonMatcher
           },
-          body: Pact.Matchers.somethingLike(heroResponse)
+          body: heroResponse
         }
       }).then(() => done())
     })
@@ -49,6 +46,7 @@ describe("HeroService API", () => {
       createHero.createHero("Superman", "flying", "DC")
         .then(response => {
           const hero = response.data
+
           expect(hero.id).toEqual(42)
         })
         .then(() => {

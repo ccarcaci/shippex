@@ -1,5 +1,9 @@
 jasmine.DEFAULT_TIMEOUT_INTERVAL=10000
 
-beforeAll(() => provider.setup())
-afterEach(() => provider.verify())
-afterAll(() => provider.finalize())
+beforeAll((done) => {
+  global.provider.setup().then(() => done());
+});
+
+afterAll((done) => {
+  global.provider.finalize().then(() => done());
+});
