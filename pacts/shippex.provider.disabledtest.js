@@ -2,7 +2,7 @@ const { Pact } = require("@pact-foundation/pact")
 const { api } = (url) => { } // require(/* wherever */)
 
 describe("The API", () => {
-  const url = "https://localhost"
+  const url = "https://localhost:8080"
 
   describe("Interaction description", () => {
     beforeEach(() => {
