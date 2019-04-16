@@ -8,7 +8,6 @@ describe("Communicate with Logistic service", () => {
         matcher: "application\\/json; *charset=utf-8",
         generate: "application/json; charset=utf-8",
       })
-
       global.provider.addInteraction({
         state: "Logistic service is able to computate shipment hops",
         uponReceiving: "A request to computate shipment trip",
@@ -28,7 +27,7 @@ describe("Communicate with Logistic service", () => {
           status: 200,
           headers: { "Content-Type": contentTypeJsonMatcher },
           body: {
-            hops: [
+            "hops": [
               "London",
               "Paris",
               "Milan",
@@ -38,15 +37,15 @@ describe("Communicate with Logistic service", () => {
         },
       }).then(() => done())
     })
-  })
 
-  it("Send a request to computate hops", done => {
-    logistic.shipment("London", "Rome")
-      .then(() => {
-        global.provider.verify()
-          .then(() => done(), error => {
-            done.fail(error)
-          })
-      })
+    it("Send a request to computate hops", done => {
+      logistic.shipment("London", "Rome")
+        .then(() => {
+          global.provider.verify()
+            .then(() => done(), error => {
+              done.fail(error)
+            })
+        })
+    })
   })
 })

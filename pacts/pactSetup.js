@@ -10,5 +10,5 @@ global.provider = new Pact({
   cors: true,
   pactfileWriteMode: "update",
   consumer: "shippex-consumer",
-  provider: "shippex-provider"
+  provider: "shippex-provider",
 })
