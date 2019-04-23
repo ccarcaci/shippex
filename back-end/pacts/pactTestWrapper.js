@@ -1,9 +1,5 @@
 jasmine.DEFAULT_TIMEOUT_INTERVAL=10000
 
-beforeAll((done) => {
-  global.provider.setup().then(() => done());
-});
-
-afterAll((done) => {
-  global.provider.finalize().then(() => done());
-});
+beforeAll(() => provider.setup()); // Create mock provider
+afterEach(() => provider.verify()); // Ensure the mock provider verifies expected interactions for each test
+afterAll(() => provider.finalize()); // Tear down the mock and write the pact

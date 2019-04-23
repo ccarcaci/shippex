@@ -19,17 +19,22 @@ const routing = async (request, response) => {
 		response.writeHead(200, { "Content-Type": "text/plain" })
     response.write("Try with /new-shipment")
     response.end()
+
+    return
 	} else if(action.pathname === "/new-shipment" && request.method === "POST") {
     const body = JSON.parse(await requestBody(request))
     const from = body.from
     const to = body.to
 
-    // Asynchronous
+		response.writeHead(200, { "Content-Type": "application/json" })
+    response.write(JSON.stringify({ status: "acquired" }), "utf-8")
+    response.end()
+    // Force the socket closing in order to ship the response immediately
+    response.socket.end()
+
     logistic.shipment(from, to)
 
-		response.writeHead(200, { "Content-Type": "application/json" })
-    response.write(JSON.stringify({ status: "acquired" }))
-    response.end()
+    return
   }
 
   response.writeHead(404)
@@ -44,7 +49,7 @@ httpsServer.listen(httpsPort, () => { console.log(`HTTPS Server on port ${httpsP
 
 // Server functions
 
-const requestBody = request => new Promise((resolve) => {
+const requestBody = request => new Promise(resolve => {
   let data = ""
 
   request.on("data", chunk => data += chunk)
