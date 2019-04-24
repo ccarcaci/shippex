@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pact": "jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "pact:providerTests": "node ./pacts/shippex.provider.test.js",
+    "pact": "start-server-and-test start http://localhost:3000 pact:providerTests"
   },
   "author": "",
   "license": "ISC",
