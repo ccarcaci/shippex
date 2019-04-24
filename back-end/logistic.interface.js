@@ -1,8 +1,8 @@
 const axios = require("axios")
 const adapter = require("axios/lib/adapters/http")
 
-const baseUrl = `${process.env.LOGISTIC_ENDPOINT}`
-const port = `${process.env.LOGISTIC_PORT}`
+const baseUrl = process.env.LOGISTIC_ENDPOINT
+const port = process.env.LOGISTIC_PORT
 
 const shipment = (from, to) => {
   const data = {
