@@ -5,7 +5,7 @@ global.port = 8080
 global.provider = new Pact({
   port: global.port,
   log: path.resolve(process.cwd(), "logs", "mockserver-integration.log"),
-  dir: path.resolve(process.cwd(), "pacts"),
+  dir: path.resolve(process.cwd(), "../contracts"),
   spec: 2,
   cors: true,
   pactfileWriteMode: "update",

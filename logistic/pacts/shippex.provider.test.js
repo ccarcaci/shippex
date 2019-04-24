@@ -1,38 +1,16 @@
-const { Pact } = require("@pact-foundation/pact")
-const { api } = (url) => { } // require(/* wherever */)
+// ./pact/provider_tests.js
+const { Verifier } = require("@pact-foundation/pact");
+const packageJson = require("../package.json");
 
-describe("The API", () => {
-  const url = "https://localhost:8080"
+let opts = {
+    providerBaseUrl: "http://localhost:3000",
+    pactUrls: [ `${process.cwd()}/../contracts/shippex-consumer-shippex-provider.json` ],
+    provider: "shippex-provider",
+    publishVerificationResult: true,
+    providerVersion: packageJson.version,
+    providerStatesSetupUrl: "http://localhost:3000/provider-state"
+}
 
-  describe("Interaction description", () => {
-    beforeEach(() => {
-      const interaction = {
-        uponReceiving: "Request description",
-        withRequest: {
-          method: "GET",
-          path: "/foo/bar",
-          query: "",
-          headers: {
-            Accept: "application/json"
-          }
-        },
-        willRespondWith: {
-          status: 200,
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: {}
-        }
-      }
-      return provider.addInteraction(interaction)
-    })
-
-    it("Test description", done => {
-      api(url).someCall()
-        .then(response => {
-          expect(response).toEqual()
-        })
-        .then(done)
-    })
-  })
+new Verifier().verifyProvider(opts).then(function () {
+    console.log("Pacts successfully verified!");
 })

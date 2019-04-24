@@ -13,8 +13,7 @@
   "devDependencies": {
     "@pact-foundation/pact": "^8.0.5",
     "@pact-foundation/pact-node": "6.20.0",
-    "jest": "^24.5.0",
-    "start-server-and-test": "^1.7.12"
+    "jest": "^24.5.0"
   },
   "dependencies": {
     "axios": "^0.18.0"

@@ -1,16 +1,19 @@
 {
-  "name": "templating-node",
+  "name": "logistic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "devstart": "nodemon index.js"
+    "pact": "jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "@pact-foundation/pact": "^8.0.5",
+    "@pact-foundation/pact-node": "6.20.0",
+    "jest": "^24.5.0",
+    "start-server-and-test": "^1.7.12"
   }
 }
