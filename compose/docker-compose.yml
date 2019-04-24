@@ -1,0 +1,38 @@
+version: '3'
+services:
+  back-end:
+    image: node:alpine
+    command: node back-end/index.js
+    container_name: shippex-back-end
+    ports:
+      - 8080:3000
+      - 4443:4443
+    expose:
+      - 8080
+      - 4443
+    volumes:
+      - ../back-end:/back-end
+  logistic:
+    image: node:alpine
+    command: node logistic/index.js
+    container_name: shippex-logistic
+    ports:
+      - 8180:3000
+      - 4543:4443
+    expose:
+      - 8180
+      - 4543
+    volumes:
+      - ../logistic:/logistic
+  notifier:
+    image: node:alpine
+    command: node notifier/index.js
+    container_name: shippex-notifier
+    ports:
+      - 8280:3000
+      - 4643:4443
+    expose:
+      - 8280
+      - 4643
+    volumes:
+      - ../notifier:/notifier

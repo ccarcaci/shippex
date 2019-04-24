@@ -2,38 +2,37 @@ const http = require("http")
 const https = require("https")
 const url = require("url")
 const fs = require("fs")
-const logistic = require("./logistic.interface")
+const characters = require("./mocks/star-wars.json")
 
 const httpsOptions = {
   key: fs.readFileSync(`${__dirname}/certs/privkey.pem`),
   cert: fs.readFileSync(`${__dirname}/certs/certificate.crt`),
 }
 
-var httpPort = 3000
-var httpsPort = 4443
+const httpPort = 3000
+const httpsPort = 4443
 
-const routing = async (request, response) => {
+const routing = (request, response) => {
   const action = url.parse(request.url)
 
 	if(action.pathname === "/") {
 		response.writeHead(200, { "Content-Type": "text/plain" })
-    response.write("Try with /new-shipment")
+    response.write("Try with /characters")
     response.end()
 
     return
-	} else if(action.pathname === "/new-shipment" && request.method === "POST") {
-    const body = JSON.parse(await requestBody(request))
-    const from = body.from
-    const to = body.to
-
+	} else if(action.pathname === "/characters") {
 		response.writeHead(200, { "Content-Type": "application/json" })
-    response.write(JSON.stringify({ status: "acquired" }), "utf-8")
+    response.write(JSON.stringify(characters))
     response.end()
-    // Force the socket closing in order to ship the response immediately
-    response.socket.end()
 
-    const hopsResponse = await logistic.shipment(from, to)
-    console.log(hopsResponse.data)
+    return
+  } else if(action.pathname === "/parrot") {
+    const content = getUrlParam(action.query.split("&"), "content")
+
+    response.writeHead(200, { "Content-Type": "application/json" })
+    response.write(JSON.stringify(parrot(content)))
+    response.end()
 
     return
   }
@@ -50,9 +49,13 @@ httpsServer.listen(httpsPort, () => { console.log(`HTTPS Server on port ${httpsP
 
 // Server functions
 
-const requestBody = request => new Promise(resolve => {
-  let data = ""
+const getUrlParam = function(rawParams, paramName) {
+  return rawParams.map(rawParam => rawParam.split("=")).
+    find(param => param[0] === paramName)[1]
+}
 
-  request.on("data", chunk => data += chunk)
-  request.on("end", () => resolve(data))
-})
+const parrot = function(content) {
+  return {
+    parrotSays: content
+  }
+}

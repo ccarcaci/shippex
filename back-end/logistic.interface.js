@@ -1,8 +1,8 @@
 const axios = require("axios")
 const adapter = require("axios/lib/adapters/http")
 
-const baseUrl = "http://localhost"
-const port = 8080
+const baseUrl = "http://logistic"
+const port = 3000
 
 const shipment = (from, to) => {
   const data = {
