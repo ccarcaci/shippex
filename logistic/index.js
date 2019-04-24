@@ -22,8 +22,11 @@ const routing = (request, response) => {
 
     return
 	} else if(action.pathname === "/hops" && request.method === "POST") {
-		response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" })
-    response.write(JSON.stringify(hops))
+    const hopsContent = JSON.stringify(hops)
+    console.log("Computated hops: " + hopsContent)
+
+    response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" })
+    response.write(hopsContent)
     response.end()
 
     return
