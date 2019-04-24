@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pact": "jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
+    "pact": "LOGISTIC_ENDPOINT=http://localhost LOGISTIC_PORT=3000 jest --testMatch [ \"**/pacts/**/*.test.js\" ] --runInBand --setupFiles ./pacts/pactSetup.js --setupFilesAfterEnv ./pacts/pactTestWrapper.js",
     "start": "node index.js"
   },
   "author": "",

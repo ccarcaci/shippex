@@ -4,6 +4,9 @@ services:
     image: node:alpine
     command: node back-end/index.js
     container_name: shippex-back-end
+    environment:
+      - LOGISTIC_ENDPOINT=http://logistic
+      - LOGISTIC_PORT=3000
     ports:
       - 8080:3000
       - 4443:4443
