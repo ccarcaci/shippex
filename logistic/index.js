@@ -10,7 +10,7 @@ const httpsOptions = {
 }
 
 const httpPort = 3000
-const httpsPort = 4443
+const httpsPort = 4343
 
 const routing = (request, response) => {
   const action = url.parse(request.url)

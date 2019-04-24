@@ -9,7 +9,7 @@ services:
       - LOGISTIC_PORT=3000
     ports:
       - 8080:3000
-      - 4443:4443
+      - 4543:4443
     expose:
       - 8080
       - 4443
@@ -21,7 +21,7 @@ services:
     container_name: shippex-logistic
     ports:
       - 8180:3000
-      - 4543:4443
+      - 4643:4443
     expose:
       - 8180
       - 4543
@@ -33,7 +33,7 @@ services:
     container_name: shippex-notifier
     ports:
       - 8280:3000
-      - 4643:4443
+      - 4743:4443
     expose:
       - 8280
       - 4643

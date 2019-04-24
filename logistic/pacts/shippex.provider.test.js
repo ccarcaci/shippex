@@ -1,4 +1,3 @@
-// ./pact/provider_tests.js
 const { Verifier } = require("@pact-foundation/pact");
 const packageJson = require("../package.json");
 
